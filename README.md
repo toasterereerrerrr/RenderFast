@@ -9,7 +9,7 @@ RenderFast eliminate "chunk-loading stutter" by pre-generating terrain before yo
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 *   **Extreme Speed**: Fully asynchronous generation using a throttled pipeline to prevent main-thread hangs.
 *   **Watchdog Breather**: Aggressively yields to the server if a tick takes too long (Default: 5s limit), preventing the 60s Watchdog crash.
@@ -22,11 +22,11 @@ RenderFast eliminate "chunk-loading stutter" by pre-generating terrain before yo
 
 ---
 
-## ⌨️ Commands
+## Commands
 
 All commands support the `/rf` alias and require OP level 2.
 
-### 🎮 Control Commands
+### Control Commands
 | Command | Description |
 |---|---|
 | `/rf start [r] [x] [z]` | Starts preloading. Radius and coordinates are optional. |
@@ -37,7 +37,7 @@ All commands support the `/rf` alias and require OP level 2.
 | `/rf turbo` | Toggles **Turbo Mode** (Bypasses safety throttles). |
 | `/rf help` | Quick in-game reference for all commands. |
 
-### 🛠️ System & Tools
+### System & Tools
 | Command | Description |
 |---|---|
 | `/rf report <seconds>` | Frequency of progress updates in the server console. |
@@ -48,7 +48,7 @@ All commands support the `/rf` alias and require OP level 2.
 | `/rf dryrun` | Visualize the target area corners using particles. |
 | `/rf estimate` | Estimates the final disk space usage for the run. |
 
-### ⚙️ Detailed Configuration (`/rf config ...`)
+### Detailed Configuration (`/rf config ...`)
 | Sub-Command | Description |
 |---|---|
 | `enable` / `hud` / `dh` | Toggle global engine, HUD, or Distant Horizons sync. |
@@ -62,13 +62,13 @@ All commands support the `/rf` alias and require OP level 2.
 
 ---
 
-## ⚙️ Configuration Screen
+## Configuration Screen
 
 Access the visual settings via **Mod Menu** or by clicking the **RF** button in the **Pause (ESC)** menu.
 
 ---
 
-## 🛠️ Requirements
+## Requirements
 
 *   **Minecraft**: 1.21.x (26.2)
 *   **Loader**: Fabric
@@ -76,11 +76,11 @@ Access the visual settings via **Mod Menu** or by clicking the **RF** button in 
 
 ---
 
-## 💡 Pro Tip: Speed vs. Quality
+## Pro Tip: Speed vs. Quality
 
 *   **Status: features**: Generates terrain, trees, and ores. It is **2x faster** than the `full` status and is recommended for standard survival pre-generation.
 *   **Turbo Mode**: Use only on empty servers. It ignores TPS and "Busy Tick" safety checks to maximize SSD write speed.
 
-## 📄 License
+## License
 
 This project is licensed under ARR (All Rights Reserved). No redistribution, modification, or commercial use is permitted without explicit written permission.
