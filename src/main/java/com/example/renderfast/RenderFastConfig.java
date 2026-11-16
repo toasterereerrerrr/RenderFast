@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RenderFastConfig {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -74,7 +75,7 @@ public class RenderFastConfig {
 	public enum Shape { CIRCLE, SQUARE }
 
 	public void applyCpuProfile() {
-		if (cpuUsageLevel == null) cpuUsageLevel = CpuUsageLevel.MEDIUM;
+		cpuUsageLevel = Objects.requireNonNullElse(cpuUsageLevel, CpuUsageLevel.MEDIUM);
 		maxConcurrentAsyncChunks = switch (cpuUsageLevel) {
 			case LOW -> 4;
 			case MEDIUM -> 16;

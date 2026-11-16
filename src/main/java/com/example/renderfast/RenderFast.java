@@ -29,6 +29,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.status.ChunkStatus;
 import net.minecraft.world.level.storage.LevelResource;
+import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -338,7 +339,7 @@ public class RenderFast implements ModInitializer {
 				&& state.centerX == cx
 				&& state.centerZ == cz
 				&& state.radius == r
-				&& state.dimension.equals(level.dimension().identifier().toString());
+				&& Objects.equals(state.dimension, level.dimension().identifier().toString());
 	}
 
 	private static void stopAllPreloading() {
@@ -511,7 +512,7 @@ public class RenderFast implements ModInitializer {
 		Identifier id = Identifier.tryParse(d);
 		return s.getLevel(ResourceKey.create(
 				Registries.DIMENSION,
-				id == null ? Identifier.parse("minecraft:overworld") : id
+				Objects.requireNonNullElseGet(id, () -> Identifier.parse("minecraft:overworld"))
 		));
 	}
 
@@ -549,6 +550,16 @@ public class RenderFast implements ModInitializer {
 		completedIndices.clear();
 		pendingCompletionQueue.clear();
 		cachedTargetStatus = null;
+
+		boolean voxyLoaded = FabricLoader.getInstance().isModLoaded("voxy");
+		boolean dhLoaded = FabricLoader.getInstance().isModLoaded("distanthorizons") || FabricLoader.getInstance().isModLoaded("dh");
+		if (CONFIG.voxyIntegration && voxyLoaded) {
+			LOGGER.info("Voxy LOD integration active: Optimized async batching & region flushing enabled for Voxy.");
+		}
+		if (CONFIG.distantHorizonsIntegration && dhLoaded) {
+			LOGGER.info("Distant Horizons LOD integration active: Synchronized chunk saves enabled for DH building.");
+		}
+
 		LOGGER.info("Starting preload: {} chunks in {}", totalChunks, dim);
 		sendDiscordWebhook("Started preloading " + totalChunks + " chunks in " + dim);
 	}

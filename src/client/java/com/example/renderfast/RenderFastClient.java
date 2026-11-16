@@ -93,12 +93,9 @@ public class RenderFastClient implements ClientModInitializer {
 		String dimStr = dimension.replace("minecraft:", "");
 		int percent = (total > 0) ? (int) (((float) done / total) * 100) : 0;
 		String status = paused ? (pauseReason.isEmpty() ? " (PAUSED)" : " (" + pauseReason + ")") : "";
-		String eta = "";
-
-		if (chunksPerSecond > 0) {
-			long rem = (long) ((total - done) / chunksPerSecond);
-			eta = String.format(" | ETA: %dm %ds", rem / 60, rem % 60);
-		}
+		String eta = chunksPerSecond > 0
+				? String.format(" | ETA: %dm %ds", (long) ((total - done) / chunksPerSecond) / 60, (long) ((total - done) / chunksPerSecond) % 60)
+				: "";
 
 		if (RenderFast.CONFIG.showHudMetrics) {
 			cachedLabel = String.format("Preloading %s: %d/%d (%d%%)%s | %.1f ch/s%s", dimStr, done, total, percent, status, chunksPerSecond, eta);
