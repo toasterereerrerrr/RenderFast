@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "renderfast",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "name": "RenderFast",
   "description": "High-performance chunk pre-generator that eliminates loading stutter by pre-generating terrain.",
   "authors": [
